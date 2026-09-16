@@ -1,0 +1,19 @@
+{
+  "name": "yolo-onnx-detector",
+  "version": "1.0.0",
+  "description": "Servicio web en Node.js que detecta objetos en imagenes usando un modelo YOLOv8 cargado directamente desde ONNX (sin librerias Ultralytics), con preprocesamiento/dibujo via OpenCV.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["yolo", "onnx", "opencv", "object-detection", "express"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@techstark/opencv-js": "^5.0.0-release.1",
+    "express": "^5.2.1",
+    "multer": "^2.3.0",
+    "onnxruntime-node": "^1.29.0",
+    "sharp": "^0.35.4"
+  }
+}

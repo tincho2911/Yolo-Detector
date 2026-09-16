@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Detección de objetos con YOLOv8 (ONNX + OpenCV)</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>🔍 Detector de objetos YOLOv8</h1>
+    <p class="subtitle">Node.js + ONNX Runtime + OpenCV.js</p>
+  </header>
+
+  <main>
+    <section class="panel upload-panel">
+      <div id="dropzone" class="dropzone">
+        <input type="file" id="fileInput" accept="image/*" hidden />
+        <div id="dropzoneContent">
+          <p><strong>Hacé clic para elegir una imagen</strong> o arrastrala acá</p>
+          <p class="hint">JPG, PNG o WEBP — hasta 15 MB</p>
+        </div>
+        <img id="previewImg" class="preview-img" hidden />
+      </div>
+
+      <button id="detectBtn" disabled>Detectar objetos</button>
+      <p id="errorMsg" class="error" hidden></p>
+    </section>
+
+    <section class="panel results-panel" id="resultsPanel" hidden>
+      <div class="results-header">
+        <h2>Resultados</h2>
+        <div class="meta">
+          <span id="metaCount"></span>
+          <span id="metaTime"></span>
+          <a id="downloadJson" href="#" download>⬇ Descargar JSON</a>
+        </div>
+      </div>
+
+      <div class="result-image-wrap">
+        <img id="resultImg" alt="Resultado de la detección" />
+        <div id="loadingOverlay" class="loading-overlay" hidden>
+          <div class="spinner"></div>
+          <p>Procesando imagen…</p>
+        </div>
+      </div>
+
+      <table id="detectionsTable">
+        <thead>
+          <tr><th>#</th><th>Clase</th><th>Confianza</th><th>Bounding box (x, y, w, h)</th></tr>
+        </thead>
+        <tbody id="detectionsBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>Pipeline: <code>multer → sharp (decode) → OpenCV.js (letterbox/preproc/draw) → onnxruntime-node (YOLOv8 ONNX) → NMS manual → JSON + JPEG</code></p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
